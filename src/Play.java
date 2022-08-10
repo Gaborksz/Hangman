@@ -59,10 +59,15 @@ public class Play {
         while ( status == "playing" ) {
             System.out.println("You have " + Lives + " Lives.");
             System.out.println("the word: " + userArray);
-
+            System.out.println(initialArray);
             boolean newInput = false;
             while ( !newInput ) {
-
+                String userInput = Util.getUserInput();
+                if(Util.isUserInputQuit(userInput)){break;}
+                if(userInput.length() > 1){continue;}
+                if(Util.isTheCharacterIsArrayInitial(userInput)){
+                    System.out.println("benne van");
+                }
                 System.out.println("newInput while");
                 newInput = true;
             }

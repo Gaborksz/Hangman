@@ -1,6 +1,10 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class GameArrays {
+
+
+
 
     public static ArrayList<String> createSolutionsArrayEasy() {
         ArrayList<String> solutionList = new ArrayList<>() {{
