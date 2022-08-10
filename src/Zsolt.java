@@ -2,28 +2,37 @@ import java.util.Scanner;
 
 public class Zsolt {
     public static void main(String[] args) {
-        char[] charArrayInitial = new char[] {'B','u','d','a','p','e','s','t'};
-        char[] charArrayUserWorking = new char[] {'_','_','_','_','_','_','_','_'};
         do {
-        System.out.println("Megint dolgoznom kell!");
-        // public static void playMethodInitializing();
+            initializingStringInitial();
+            initializingStringWorking();
+            play("", 5);
+            //
             // public static void play(String word, int lives)
-            } while (isUserInputQuit("userInput"));
+        } while (isUserInputQuit("true"));
+    }
+    public static void play(String word, int lives) {
+        getUserInput();
+    }
+    public static String initializingStringInitial(){
+        String initialString = "Budapest";
+        return initialString;
     }
 
-    public static void play(String word, int lives) {
-        getUserInput("Hi");
-        }
+    public static String initializingStringWorking(){
+        String workingString = "________";
+        return workingString;
+    }
 
-    public static void getUserInput(String input) {
+
+    public static void getUserInput() {
         Scanner userInput = new Scanner(System.in);
         System.out.println("Hangman game. You have to guess a geographical expression.");
         System.out.println("It can be played by typing a letter. You can exit by adding quit.");
         System.out.println("Your guess: ");
         String guess = userInput.nextLine();
         isUserInputQuit(guess);
-        whichCharacter(guess);
-
+        char userChar = guess.charAt(0);
+        System.out.println(isTheCharacterIsArrayInitial(initializingStringInitial(), userChar));
     }
     public static boolean isUserInputQuit(String userInput){
         boolean boolQuit;
@@ -34,8 +43,13 @@ public class Zsolt {
         }
         return boolQuit;
     }
-    public static void whichCharacter(String userInput){
-        char userChar = userInput.charAt(0);
-        System.out.println("The character is: " + userChar);
+    public static boolean isTheCharacterIsArrayInitial (String str, char userChar){
+        boolean boolIsTheCharacterIsArrayInitial;
+        if (str.indexOf(userChar)>-1) {
+            boolIsTheCharacterIsArrayInitial = true;
+        } else {
+            boolIsTheCharacterIsArrayInitial = false;
+        }
+        return boolIsTheCharacterIsArrayInitial;
     }
 }
