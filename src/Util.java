@@ -1,29 +1,38 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Util {
 
-    public static int gameMenuUserInput() {
+    public static int get_int_UserInput() {
 
-        Scanner scanner = new Scanner(System.in);
-        int userInput = scanner.nextInt();
+        int userInput = 1;
+
+        do {
+            if (userInput < 0 || userInput > 3) {
+                System.out.println("Please choose a difficulty level between 1 and 3");}
+
+            Scanner scanner = new Scanner(System.in);
+            userInput = scanner.nextInt();
+
+        } while (userInput < 1 || userInput > 3);
+
         return  userInput;
     }
 
-    public static String getUserInput() {
+    public static String get_String_UserInput() {
+
         Scanner userInput = new Scanner(System.in);
-        System.out.println("Hangman game. You have to guess a geographical expression.");
-        System.out.println("It can be played by typing a letter. You can exit by adding quit.");
-        System.out.println("Your guess: ");
+        System.out.print("Your guess: ");
         String guess = userInput.nextLine();
-        //isUserInputQuit(guess);
-        //char userChar = guess.charAt(0);
+
         return guess;
-        //System.out.println(isTheCharacterIsArrayInitial(initializingStringInitial(), userChar));
     }
-    //public static void userInput
+
 
     public static boolean isUserInputQuit(String userInput){
+
         boolean boolQuit;
+
         if (userInput.equals("quit")) {
             boolQuit = true;
         } else {
@@ -32,9 +41,11 @@ public class Util {
         return boolQuit;
     }
 
-    public static boolean isTheCharacterIsArrayInitial (String userChar){
+    public static boolean isValidLetter(String userChar){
+
         String hunLetters = "AaÁáBbCcDdEeÉéFfGgHhIiÍíJjKkLlMmNnOoÓóÖöŐőPpQqRrSsTtUuÚúÜüŰűVvWwXxYyZz";
         boolean boolIsTheCharacterIsArrayInitial;
+
         if (hunLetters.indexOf(userChar)>-1) {
             boolIsTheCharacterIsArrayInitial = true;
         } else {
@@ -42,5 +53,64 @@ public class Util {
         }
         return boolIsTheCharacterIsArrayInitial;
     }
+
+    public static String returnValidUserInput() {
+
+        String validUserInput = "";
+
+        boolean validInput = false;
+        while ( !validInput ) {
+
+            validUserInput = get_String_UserInput();
+
+            if(isUserInputQuit(validUserInput)){ break;}
+
+            if(validUserInput.length() > 1){
+                System.out.println("Please type:  quit  if you want to leave the game");
+                continue;
+            }
+            if(!Util.isValidLetter(validUserInput)){
+                System.out.println("Please type a letter");
+                continue;
+            }
+
+            validInput = true;
+        }
+        return validUserInput;
+    }
+
+
+    public static String returnNewUserInput(ArrayList<String> userArray, ArrayList<String> badLettersArray) {
+
+        String newUserInput = "";
+
+        boolean newInput = false;
+        while ( !newInput ) {
+
+            newUserInput = returnValidUserInput();
+
+            if (GameArrays.checkArrayForLetter(userArray, newUserInput)) {
+                System.out.println("The letter has already been guessed and it is in the word");
+                continue;
+            }
+
+            if (GameArrays.checkArrayForLetter(badLettersArray, newUserInput)) {
+                System.out.println("The letter has already been guessed and it is NOT in the word");
+                System.out.println(badLettersArray);
+                continue;
+            }
+
+            newInput = true;
+        }
+        return newUserInput;
+    }
+
+    public static void showGameStatistics(int Lives, ArrayList<String> userArray, ArrayList<String> initialArray) {
+
+        System.out.println("You have " + Lives + " Lives.");
+        System.out.println("the word: " + userArray);
+        System.out.println(initialArray);
+    }
+
 
 }

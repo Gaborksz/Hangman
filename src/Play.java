@@ -1,16 +1,16 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Play {
 
     public static void play() {
 
         GameMenu.showMenu();
-        int userChoice = Util.gameMenuUserInput();
+        int userChoice = Util.get_int_UserInput();
         int Lives = setLives(userChoice);
-        ArrayList<String> initialArray = setupGame(userChoice);
-        ArrayList<String> userArray = GameArrays.createUserWordArray(initialArray.size());
-        runGame(Lives, initialArray, userArray);
+        ArrayList<ArrayList<String>> gameArrays = GameArrays.returnGameArrays(userChoice);
+        String gameStatus = "playing";
+        gameStatus = runGame(gameStatus, Lives, gameArrays);
+        endGame(gameStatus);
     }
 
     public static ArrayList<String> setupGame(int userChoice) {
@@ -33,7 +33,6 @@ public class Play {
         }
     }
 
-
     public static int setLives(int userChoice) {
 
         switch (userChoice) {
@@ -52,30 +51,44 @@ public class Play {
         }
     }
 
-    public static void runGame(int Lives, ArrayList<String> initialArray, ArrayList<String> userArray) {
+    public static String runGame(String gameStatus, int Lives, ArrayList<ArrayList<String>> gameArrays ) {
 
-        String status = "playing";
+        ArrayList<String> initialArray = gameArrays.get(0),
+                          userArray = gameArrays.get(1),
+                          badLettersArray = gameArrays.get(2);
 
-        while ( status == "playing" ) {
-            System.out.println("You have " + Lives + " Lives.");
-            System.out.println("the word: " + userArray);
-            System.out.println(initialArray);
-            boolean newInput = false;
-            while ( !newInput ) {
-                String userInput = Util.getUserInput();
-                if(Util.isUserInputQuit(userInput)){break;}
-                if(userInput.length() > 1){continue;}
-                if(Util.isTheCharacterIsArrayInitial(userInput)){
-                    System.out.println("benne van");
-                }
-                System.out.println("newInput while");
-                newInput = true;
+        while ( gameStatus == "playing" ) {
+
+            Util.showGameStatistics(Lives, userArray, initialArray);
+            String userNewInput = Util.returnNewUserInput(userArray, badLettersArray);
+
+            if (userNewInput.equals("quit")) {
+                return "quit";
             }
-
-            System.out.println("runGame while");
-            status = "won";
+//            return = "won";
         }
-
+        return "";
     }
 
+    public static void endGame(String gameStatus) {
+
+        switch (gameStatus) {
+            case "won": {
+                System.out.println("Congratulations, you have won");
+            }
+            break;
+            case "lost": {
+                System.out.println("You have Lost, don't you worry just play again.");
+            }
+            break;
+            case "quit": {
+                System.out.println("You have choosen to quit the game, come back and play again");
+            }
+            break;
+            default: {
+                //do nothing
+            }
+        }
+    }
 }
+

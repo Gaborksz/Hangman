@@ -3,7 +3,15 @@ import java.util.ArrayList;
 
 public class GameArrays {
 
+    public static ArrayList<ArrayList<String>> returnGameArrays(int userChoice) {
+        ArrayList<ArrayList<String>> gameArrays = new ArrayList(){};
 
+        gameArrays.add(Play.setupGame(userChoice));
+        gameArrays.add(GameArrays.createUserWordArray(gameArrays.get(0).size()));
+        gameArrays.add(new ArrayList<>());
+
+        return gameArrays;
+    }
 
 
     public static ArrayList<String> createSolutionsArrayEasy() {
@@ -59,7 +67,7 @@ public class GameArrays {
     }
 
 
-    public static boolean checkWordForLetter(ArrayList<String> wordArray, String letter) {
+    public static boolean checkArrayForLetter(ArrayList<String> wordArray, String letter) {
         for (String item : wordArray) {
             if (item.equalsIgnoreCase(letter)) {
                 return true;
