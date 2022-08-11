@@ -106,10 +106,9 @@ public class Util {
         return newUserInput;
     }
 
-    public static void showGameStatistics(int Lives, ArrayList<String> userArray, ArrayList<String> initialArray) {
+    public static void showGameStatistics(int Lives, ArrayList<String> userArray, ArrayList<Character> livesArray) {
 
-        System.out.println("You have " + Lives + " Lives.");
+        System.out.println("You have " + Lives + " Lives." + livesArray.toString().replace(",",""));
         System.out.println("the word: " + userArray.toString().replace(",",""));
-        //System.out.println(initialArray);
     }
 }

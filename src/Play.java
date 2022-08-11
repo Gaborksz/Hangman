@@ -7,9 +7,10 @@ public class Play {
         GameMenu.showMenu();
         int userChoice = Util.get_int_UserInput();
         int Lives = setLives(userChoice);
+        ArrayList<Character> livesArray = GameArrays.createLivesArray(Lives);
         ArrayList<ArrayList<String>> gameArrays = GameArrays.returnGameArrays(userChoice);
         String gameStatus = "playing";
-        gameStatus = runGame(gameStatus, Lives, gameArrays);
+        gameStatus = runGame(gameStatus, Lives, gameArrays, livesArray);
         endGame(gameStatus, gameArrays.get(0));
     }
 
@@ -51,7 +52,7 @@ public class Play {
         }
     }
 
-    public static String runGame(String gameStatus, int Lives, ArrayList<ArrayList<String>> gameArrays ) {
+    public static String runGame(String gameStatus, int Lives, ArrayList<ArrayList<String>> gameArrays, ArrayList<Character> livesArray) {
 
         ArrayList<String> initialArray = gameArrays.get(0),
                           userArray = gameArrays.get(1),
@@ -59,7 +60,7 @@ public class Play {
 
         while ( gameStatus == "playing" ) {
 
-            Util.showGameStatistics(Lives, userArray, initialArray);
+            Util.showGameStatistics(Lives, userArray,livesArray);
             String newUserInput = Util.returnNewUserInput(userArray, badLettersArray);
 
             if (newUserInput.equals("quit")) {
@@ -68,6 +69,7 @@ public class Play {
             if (!GameArrays.checkArrayForLetter( initialArray, newUserInput)) {
                 if (--Lives < 1) {return "lost";}
                 badLettersArray.add(newUserInput);
+                livesArray.remove(livesArray.size()-1);
                 System.out.println(badLettersArray + "List of your wrong letters");
                 continue;
             }
@@ -78,7 +80,7 @@ public class Play {
         }
         return "";
     }
-    
+
     public static void endGame(String gameStatus, ArrayList<String> initialArray) {
 
         switch (gameStatus) {

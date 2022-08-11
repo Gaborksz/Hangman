@@ -10,7 +10,16 @@ public class GameArrays {
         gameArrays.add(GameArrays.createUserWordArray(gameArrays.get(0).size()));
         gameArrays.add(new ArrayList<>());
 
+
         return gameArrays;
+    }
+
+    public static ArrayList<Character> createLivesArray(int Lives){
+        ArrayList<Character> livesArray = new ArrayList<>();
+        for (int i = 0; i < Lives; i++) {
+            livesArray.add('o');
+        }
+        return livesArray;
     }
 
     public static ArrayList<String> createSolutionsArrayEasy() {
@@ -20,7 +29,6 @@ public class GameArrays {
                     solutionList.add(country);
                 }
             }
-        System.out.println(solutionList);
         return solutionList;
     }
 
@@ -32,7 +40,6 @@ public class GameArrays {
                 solutionList.add(country);
             }
         }
-        System.out.println(solutionList);
         return solutionList;
     }
 
@@ -44,7 +51,6 @@ public class GameArrays {
                 solutionList.add(country);
             }
         }
-        System.out.println(solutionList);
         return solutionList;
     }
 
