@@ -13,34 +13,38 @@ public class GameArrays {
         return gameArrays;
     }
 
-
     public static ArrayList<String> createSolutionsArrayEasy() {
-        ArrayList<String> solutionList = new ArrayList<>() {{
-            add("Trinidad and Tobago");
-            //add("Gyor");
-        }};
+        ArrayList<String> solutionList = new ArrayList<>(){};
+            for (String country:Countries.getAllCountries()){
+                if(country.length() < 5){
+                    solutionList.add(country);
+                }
+            }
+        System.out.println(solutionList);
         return solutionList;
     }
 
 
     public static ArrayList<String> createSolutionsArrayMedium() {
-        ArrayList<String> solutionList = new ArrayList<>(){{
-            add("Budapest");
-            add("Moscow");
-            add("Ankara");
-            add("Bejing");
-        }};
+        ArrayList<String> solutionList = new ArrayList<>(){};
+        for (String country:Countries.getAllCountries()){
+            if(country.length() >= 5 && country.length() < 9){
+                solutionList.add(country);
+            }
+        }
+        System.out.println(solutionList);
         return solutionList;
     }
 
 
     public static ArrayList<String> createSolutionsArrayHard() {
-        ArrayList<String> solutionList = new ArrayList<>(){{
-            add("Budapestaaaaa");
-            add("Moscowaaaaaa");
-            add("Ankaraaaaaa");
-            add("Bejingaaaaa");
-        }};
+        ArrayList<String> solutionList = new ArrayList<>(){};
+        for (String country:Countries.getAllCountries()){
+            if(country.length() >= 9 ){
+                solutionList.add(country);
+            }
+        }
+        System.out.println(solutionList);
         return solutionList;
     }
 

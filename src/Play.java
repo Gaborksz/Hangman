@@ -10,7 +10,7 @@ public class Play {
         ArrayList<ArrayList<String>> gameArrays = GameArrays.returnGameArrays(userChoice);
         String gameStatus = "playing";
         gameStatus = runGame(gameStatus, Lives, gameArrays);
-        endGame(gameStatus);
+        endGame(gameStatus, gameArrays.get(0));
     }
 
     public static ArrayList<String> setupGame(int userChoice) {
@@ -78,18 +78,18 @@ public class Play {
         }
         return "";
     }
-
-
-
-    public static void endGame(String gameStatus) {
+    
+    public static void endGame(String gameStatus, ArrayList<String> initialArray) {
 
         switch (gameStatus) {
             case "won": {
                 System.out.println("Congratulations, you have won");
+                System.out.println("The solution of the game is: " + initialArray);
             }
             break;
             case "lost": {
                 System.out.println("You have Lost, don't you worry just play again.");
+                System.out.println("The solution of the game is: " + initialArray);
             }
             break;
             case "quit": {
