@@ -20,11 +20,12 @@ public class Util {
     }
 
     public static String get_String_UserInput() {
-
-        Scanner userInput = new Scanner(System.in);
-        System.out.print("Your guess: ");
-        String guess = userInput.nextLine();
-
+        String guess = "";
+        do {
+            Scanner userInput = new Scanner(System.in);
+            System.out.print("Please enter a letter or type quit!");
+            guess = userInput.nextLine();
+        }while(guess.equals(""));
         return guess;
     }
 
@@ -43,7 +44,7 @@ public class Util {
 
     public static boolean isValidLetter(String userChar){
 
-        String hunLetters = "AaÁáBbCcDdEeÉéFfGgHhIiÍíJjKkLlMmNnOoÓóÖöŐőPpQqRrSsTtUuÚúÜüŰűVvWwXxYyZz";
+        String hunLetters = "AaÁáBbCcDdEeÉéFfGgHhIiÍíJjKkLlMmNnOoÓóÖöŐőPpQqRrSsTtUuÚúÜüŰűVvWwXxYyZz ";
         boolean boolIsTheCharacterIsArrayInitial;
 
         if (hunLetters.indexOf(userChar)>-1) {
@@ -70,7 +71,7 @@ public class Util {
                 continue;
             }
             if(!Util.isValidLetter(validUserInput)){
-                System.out.println("Please type a letter");
+                System.out.println("That's not a letter!");
                 continue;
             }
 
@@ -108,9 +109,7 @@ public class Util {
     public static void showGameStatistics(int Lives, ArrayList<String> userArray, ArrayList<String> initialArray) {
 
         System.out.println("You have " + Lives + " Lives.");
-        System.out.println("the word: " + userArray);
-        System.out.println(initialArray);
+        System.out.println("the word: " + userArray.toString().replace(",",""));
+        //System.out.println(initialArray);
     }
-
-
 }

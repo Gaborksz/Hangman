@@ -8,7 +8,4 @@ public class GameMenu {
                             "Please type in the number now and press Enter"
                             );
     }
-
-
-
 }

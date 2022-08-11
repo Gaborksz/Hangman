@@ -16,8 +16,8 @@ public class GameArrays {
 
     public static ArrayList<String> createSolutionsArrayEasy() {
         ArrayList<String> solutionList = new ArrayList<>() {{
-            add("Pecs");
-            add("Gyor");
+            add("Trinidad and Tobago");
+            //add("Gyor");
         }};
         return solutionList;
     }
@@ -46,14 +46,14 @@ public class GameArrays {
 
     public static ArrayList<String> createInitialWordArray(ArrayList<String> SolutionsArray) {
 
-        ArrayList<String> initalArray = new ArrayList<>();
+        ArrayList<String> initialArray = new ArrayList<>();
         double randomID = ((Math.random() * (SolutionsArray.size() - 0)) + 0);
         String strWordPuzzle = SolutionsArray.get((int) randomID);
 
         for (int i = 0; i < strWordPuzzle.length(); i++) {
-            initalArray.add(strWordPuzzle.substring(i, i + 1));
+            initialArray.add(strWordPuzzle.substring(i, i + 1));
         }
-        return initalArray;
+        return initialArray;
     }
 
     public static ArrayList<String> createUserWordArray(int length) {
@@ -65,8 +65,6 @@ public class GameArrays {
         }
         return userWordArray;
     }
-
-
     public static boolean checkArrayForLetter(ArrayList<String> wordArray, String letter) {
         for (String item : wordArray) {
             if (item.equalsIgnoreCase(letter)) {
@@ -75,5 +73,13 @@ public class GameArrays {
         }
         return false;
     }
+    public static void showLettersInUserArray(ArrayList<String> initialArray, ArrayList<String> userArray, String userInput){
+        for (int i=0; i < initialArray.size();i++){
+            if(initialArray.get(i).equalsIgnoreCase(userInput)){
+                userArray.set(i,initialArray.get(i));
+            }
+        }
+    }
 }
+
 

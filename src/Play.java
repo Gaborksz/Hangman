@@ -60,15 +60,26 @@ public class Play {
         while ( gameStatus == "playing" ) {
 
             Util.showGameStatistics(Lives, userArray, initialArray);
-            String userNewInput = Util.returnNewUserInput(userArray, badLettersArray);
+            String newUserInput = Util.returnNewUserInput(userArray, badLettersArray);
 
-            if (userNewInput.equals("quit")) {
+            if (newUserInput.equals("quit")) {
                 return "quit";
             }
-//            return = "won";
+            if (!GameArrays.checkArrayForLetter( initialArray, newUserInput)) {
+                if (--Lives < 1) {return "lost";}
+                badLettersArray.add(newUserInput);
+                System.out.println(badLettersArray + "List of your wrong letters");
+                continue;
+            }
+            GameArrays.showLettersInUserArray(initialArray, userArray, newUserInput);
+            if (initialArray.equals(userArray)){
+                return "won";
+            }
         }
         return "";
     }
+
+
 
     public static void endGame(String gameStatus) {
 
