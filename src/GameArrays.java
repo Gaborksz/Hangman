@@ -3,21 +3,43 @@ import java.util.ArrayList;
 
 public class GameArrays {
 
-    public static ArrayList<ArrayList<String>> returnGameArrays(int userChoice) {
+    public static ArrayList<ArrayList<String>> returnGameArrays(int userChoice, int Lives) {
         ArrayList<ArrayList<String>> gameArrays = new ArrayList(){};
 
-        gameArrays.add(Play.setupGame(userChoice));
+        gameArrays.add(setupGame(userChoice));
         gameArrays.add(GameArrays.createUserWordArray(gameArrays.get(0).size()));
         gameArrays.add(new ArrayList<>());
+        gameArrays.add((createLivesArray(Lives)));
 
 
         return gameArrays;
     }
 
-    public static ArrayList<Character> createLivesArray(int Lives){
-        ArrayList<Character> livesArray = new ArrayList<>();
+    public static ArrayList<String> setupGame(int userChoice) {
+
+        ArrayList<String> temp = new ArrayList<>();
+
+        switch (userChoice) {
+            case 1: {                       // easy
+                return createInitialWordArray(createSolutionsArrayEasy());
+            }
+            case 2: {                       // medium
+                return createInitialWordArray(createSolutionsArrayMedium());
+            }
+            case 3: {                       // hard
+                return createInitialWordArray(createSolutionsArrayHard());
+            }
+            default: {
+                return temp;
+            }
+        }
+    }
+
+
+    public static ArrayList<String> createLivesArray(int Lives){
+        ArrayList<String> livesArray = new ArrayList<>();
         for (int i = 0; i < Lives; i++) {
-            livesArray.add('o');
+            livesArray.add("+");
         }
         return livesArray;
     }

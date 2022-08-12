@@ -7,31 +7,10 @@ public class Play {
         GameMenu.showMenu();
         int userChoice = Util.get_int_UserInput();
         int Lives = setLives(userChoice);
-        ArrayList<Character> livesArray = GameArrays.createLivesArray(Lives);
-        ArrayList<ArrayList<String>> gameArrays = GameArrays.returnGameArrays(userChoice);
+        ArrayList<ArrayList<String>> gameArrays = GameArrays.returnGameArrays(userChoice, Lives);
         String gameStatus = "playing";
-        gameStatus = runGame(gameStatus, Lives, gameArrays, livesArray);
+        gameStatus = runGame(gameStatus, Lives, gameArrays);
         endGame(gameStatus, gameArrays.get(0));
-    }
-
-    public static ArrayList<String> setupGame(int userChoice) {
-
-        ArrayList<String> temp = new ArrayList<>();
-
-        switch (userChoice) {
-            case 1: {                       // easy
-                return GameArrays.createInitialWordArray(GameArrays.createSolutionsArrayEasy());
-            }
-            case 2: {                       // medium
-                return GameArrays.createInitialWordArray(GameArrays.createSolutionsArrayMedium());
-            }
-            case 3: {                       // hard
-                return GameArrays.createInitialWordArray(GameArrays.createSolutionsArrayHard());
-            }
-            default: {
-                return temp;
-            }
-        }
     }
 
     public static int setLives(int userChoice) {
@@ -52,11 +31,12 @@ public class Play {
         }
     }
 
-    public static String runGame(String gameStatus, int Lives, ArrayList<ArrayList<String>> gameArrays, ArrayList<Character> livesArray) {
+    public static String runGame(String gameStatus, int Lives, ArrayList<ArrayList<String>> gameArrays) {
 
         ArrayList<String> initialArray = gameArrays.get(0),
                           userArray = gameArrays.get(1),
-                          badLettersArray = gameArrays.get(2);
+                          badLettersArray = gameArrays.get(2),
+                          livesArray = gameArrays.get(3);
 
         while ( gameStatus == "playing" ) {
 
@@ -70,7 +50,7 @@ public class Play {
                 if (--Lives < 1) {return "lost";}
                 badLettersArray.add(newUserInput);
                 livesArray.remove(livesArray.size()-1);
-                System.out.println(badLettersArray + "List of your wrong letters");
+                System.out.println("The letter is not in the word.\t\t\t\t\t\t\t\t\tList of wrong letters\t" + badLettersArray + "\n");
                 continue;
             }
             GameArrays.showLettersInUserArray(initialArray, userArray, newUserInput);
@@ -85,17 +65,17 @@ public class Play {
 
         switch (gameStatus) {
             case "won": {
-                System.out.println("Congratulations, you have won");
+                System.out.println("Congratulations, you have won! :-)");
                 System.out.println("The solution of the game is: " + initialArray);
             }
             break;
             case "lost": {
-                System.out.println("You have Lost, don't you worry just play again.");
+                System.out.println("You have Lost, don't you worry just play again. Good Luck!");
                 System.out.println("The solution of the game is: " + initialArray);
             }
             break;
             case "quit": {
-                System.out.println("You have choosen to quit the game, come back and play again");
+                System.out.println("You have choosen to quit the game, we look forward seeing You playing again");
             }
             break;
             default: {

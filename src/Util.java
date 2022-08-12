@@ -91,13 +91,12 @@ public class Util {
             newUserInput = returnValidUserInput();
 
             if (GameArrays.checkArrayForLetter(userArray, newUserInput)) {
-                System.out.println("The letter has already been guessed and it is in the word");
+                System.out.println("The letter has already been guessed and it is in the word.");
                 continue;
             }
 
             if (GameArrays.checkArrayForLetter(badLettersArray, newUserInput)) {
-                System.out.println("The letter has already been guessed and it is NOT in the word");
-                System.out.println(badLettersArray);
+                System.out.println("The letter has already been guessed and it is NOT in the word.  List of wrong letters\t" + badLettersArray);
                 continue;
             }
 
@@ -106,9 +105,11 @@ public class Util {
         return newUserInput;
     }
 
-    public static void showGameStatistics(int Lives, ArrayList<String> userArray, ArrayList<Character> livesArray) {
+    public static void showGameStatistics(int Lives, ArrayList<String> userArray, ArrayList<String> livesArray) {
 
-        System.out.println("You have " + Lives + " Lives." + livesArray.toString().replace(",",""));
-        System.out.println("the word: " + userArray.toString().replace(",",""));
+        String wordLives = (Lives > 1) ? "Lives" : "Live";
+
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tYou have " + Lives + " " + wordLives + ".\t" + livesArray.toString().replace(",",""));
+        System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tThe word: " + userArray.toString().replace(",",""));
     }
 }

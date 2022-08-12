@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef5b2faf-ba74-4287-bbaa-ca3f239c5073" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Gabor.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GameArrays.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameArrays.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Play.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Play.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Util.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Util.java" afterDir="false" />
@@ -42,7 +40,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/user/Desktop/hangman&quot;
+    &quot;last_opened_file_path&quot;: &quot;C:/Coding/Projects/CodeCool/Projects/Week 3/Hangman_Team&quot;
   }
 }</component>
   <component name="RunManager" selected="Application.Main">
